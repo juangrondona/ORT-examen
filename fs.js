@@ -18,4 +18,7 @@ switch (par) {
             fs.appendFileSync('summary.txt', `${txt} ${cantChar} chars \n`) 
         })
         break
+    default:
+        console.log(`El comando "${par}" no se reconoce. Los comandos validos son: count, size, length, search`)
+        break
 }
