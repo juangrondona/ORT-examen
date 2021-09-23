@@ -1,5 +1,4 @@
 const fs = require('fs');
-const { arch } = require('os');
 let par = String(process.argv[2])
 let archivos = fs.readdirSync('files');
 switch (par) {
@@ -8,15 +7,14 @@ switch (par) {
         break
     case 'size':
         archivos.forEach(txt => {
-            let stats = fs.statSync(`files/${txt}`)
-            fs.appendFileSync('summary.txt', `${txt} ${stats.size} bytes \n`) 
+            let bytes = fs.statSync(`files/${txt}`).size
+            fs.appendFileSync('summary.txt', `${txt} ${bytes} bytes \n`) 
         })        
         break
     case 'length':
         let totalChar = 0
         archivos.forEach(txt => {
-            let archivo = String(fs.readFileSync(`files/${txt}`))
-            let cantChar = archivo.length;
+            let cantChar = String(fs.readFileSync(`files/${txt}`)).length;
             totalChar += cantChar
             fs.appendFileSync('summary.txt', `${txt} ${cantChar} chars \n`) 
         })
