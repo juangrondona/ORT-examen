@@ -1,5 +1,6 @@
-const fs = require('fs')
-let par = String(process.argv.slice(2))
+const fs = require('fs');
+const { arch } = require('os');
+let par = String(process.argv[2])
 let archivos = fs.readdirSync('files');
 switch (par) {
     case 'count':
@@ -12,10 +13,23 @@ switch (par) {
         })        
         break
     case 'length':
+        let totalChar = 0
         archivos.forEach(txt => {
             let archivo = String(fs.readFileSync(`files/${txt}`))
             let cantChar = archivo.length;
+            totalChar += cantChar
             fs.appendFileSync('summary.txt', `${txt} ${cantChar} chars \n`) 
+        })
+        fs.appendFileSync('summary.txt', `\n ${totalChar} chars \n`)
+        break
+    case 'search':
+        let aBuscar = String(process.argv[3])
+        archivos.forEach(txt => {
+            let archivoTxt = String(fs.readFileSync(`files/${txt}`))
+            
+            if(archivoTxt.includes(aBuscar)){
+                console.log(txt);
+            }
         })
         break
     default:
