@@ -1,6 +1,0 @@
-a.txt 574 bytes 
-b.txt 1062 bytes 
-c.txt 613 bytes 
-d.txt 750 bytes 
-e.txt 844 bytes 
-f.txt 996 bytes 
