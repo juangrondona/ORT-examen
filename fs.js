@@ -6,10 +6,10 @@ switch (par) {
         console.log(`En la carpeta files hay ${archivos.length} archivos`)
         break
     case 'size':
+        let paraGuardar;
         archivos.forEach(txt => {
             let stats = fs.statSync(`files/${txt}`)
-            console.log(`${txt} ${stats.size} bytes` )  
-        })
-                 
+            fs.appendFileSync('summary.txt', `${txt} ${stats.size} bytes \n`) 
+        })        
         break
 }
